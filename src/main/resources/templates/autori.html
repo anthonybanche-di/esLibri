@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link th:replace="fragments/css">
+</head>
+<body>
+
+<div th:replace="menu.html" ></div>
+	
+	<h1 th:text="${titolo}"></h1>
+	<a href="autore"><button>Aggiungi autore</button></a>
+<table id="tabellaAutori"  th:if="${autori} != null">
+  <tr>
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Cognome</th>
+    <th>Nazionalità</th>
+  </tr>
+    <tr th:each="autore : ${autori}">
+	    <td th:text="${autore.id}"> </td>
+	    <td th:text="${autore.nome}"></td>
+	    <td th:text="${autore.reparto}"></td>
+	    <td th:text="${autore.prezzo}"></td>
+		
+		<td><a th:href="'autore?id='+${autore.id}"><button>Modifica</button></a></td>
+	    <td><button th:onclick="'deleteAutore('+${autore.id}+')'">Elimina</button></td>
+	</tr>
+</table>
+
+<script type="text/javascript" src="js/listAutori.js"></script>
+
+</body>
+</html>
