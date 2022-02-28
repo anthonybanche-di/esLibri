@@ -13,7 +13,7 @@ import it.es.libri.repository.ProdottiDB;
 import it.es.libri.repository.UtentiDB;
 
 @Service
-public class AutoreService {
+public class AutoriService {
 	
 	@Autowired
 	AutoreDB db;
