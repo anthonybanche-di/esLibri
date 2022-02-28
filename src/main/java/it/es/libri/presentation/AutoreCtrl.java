@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.es.libri.model.Autore;
-import it.es.libri.service.AutoreService;
+import it.es.libri.service.AutoriService;
 
 @Controller
 @RequestMapping("/autore")
 public class AutoreCtrl {
 
 	@Autowired
-	AutoreService srv;
+	AutoriService srv;
 	
 	@GetMapping("/list")
 	public String get(Model model) {		
