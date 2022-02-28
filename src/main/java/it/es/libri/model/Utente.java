@@ -38,7 +38,7 @@ public class Utente {
 
 	@Transient // -> Serve per dire a spring data di ignorare questo campo
 	private List<Prodotto> carrello;
-	
+	//Modifica
 	public Utente() {}
 
 	public Utente(String nome, String cognome, String indirizzo, String email, String password) {
