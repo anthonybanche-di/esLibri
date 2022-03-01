@@ -41,18 +41,24 @@ public class LibroMVC {
 	}
 	
 	@GetMapping("/updLibro/{id}")
-	public String updLibro(@RequestParam(value="idDaModificare",required=true)int id ,Model m) {
+	public String updLibro(@PathVariable ("id") int id,Model m) {
 		
 		String titolo = "Modifica Libro";
 		m.addAttribute("titolo2", titolo);
 		
 		Libro modificare = srv.getLibroById(id);
-		//m.addAttribute("isUpdate", true);
-		m.addAttribute("newCanzone",modificare);
 		
-		
+		m.addAttribute("formLibro",modificare);
+	
+		return "updateLibro";
+	}
+	
+	@PostMapping("/updLibro")
+	public String updLibro(@ModelAttribute("libro") Libro l) {
+		srv.updLibro(l);
 		return "libri2";
 	}
+	
 	
 	
 }
