@@ -6,11 +6,13 @@
 </head>
 <body>
 
-	<form action="#" th:action="@{/listaLibri/updLibro/{id}}" th:object="${formLibro}" method="get">
-		<p><input readonly type=email th:field="${formLibro.id}"/> </p>
+	<form action="#" th:action="@{/listaLibri/updLibro}" th:object="${formLibro}" method="post">
+		<p><input readonly hidden type=number th:field="${formLibro.id}"/> </p>
 		<p>Titolo: <input type=text th:field="${formLibro.titolo}"/> </p>
 		<p>Pagine: <input type=number th:field="${formLibro.pagine}"/> </p>
 		<p>Prezzo: <input type=number step=0.01 th:field="${formLibro.prezzo}"/> </p>
+		<button>Modifica</button>
+		
 	</form>
 
 </body>
