@@ -12,9 +12,25 @@ import it.es.libri.repository.LibroDB;
 public class LibroService {
 	
 	@Autowired
-	LibroDB libri;
+	LibroDB db;
 	
 	public List<Libro> getListaLibri() {
-		return libri.findAll(); //Passacarte
+		return db.findAll(); //Passacarte
+	}
+	
+	public Libro getLibroById(int id) {
+		return db.getById(id);
+	}
+	
+	public void addLibro(Libro l) {
+		db.save(l);
+	}
+	
+	public Libro updLibro(Libro l) {
+		return db.save(l);
+	}
+	
+	public void deleteLibroById(int id) {
+		db.deleteById(id);
 	}
 }

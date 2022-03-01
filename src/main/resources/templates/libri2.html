@@ -23,8 +23,8 @@
     <td th:text="${libro.prezzo}"></td>
     <td th:text="${libro.pagine}"></td>
     
-    <td><button th:onclick="'deleteLibro ('+ ${libro.id} + ')'">Delete</button></td>
-    <td><button th:onclick="'addLibro (' + ${libro.id} + ')'">Aggiungi</button></td>
+    <td><button th:onclick="'deleteLibro (' + ${libro.id} + ')'">Delete</button></td>
+    <td><button th:onclick="'modifyLibro (' + ${libro.id} + ')'">Modifica</button></td>
   </tr>
 </table>
 

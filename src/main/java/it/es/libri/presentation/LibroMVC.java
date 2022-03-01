@@ -7,9 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.es.libri.model.Libro;
+import it.es.libri.model.Utente;
 import it.es.libri.service.LibroService;
 
 @Controller
@@ -33,4 +39,20 @@ public class LibroMVC {
 		
 		return "libri2";
 	}
+	
+	@GetMapping("/updLibro/{id}")
+	public String updLibro(@RequestParam(value="idDaModificare",required=true)int id ,Model m) {
+		
+		String titolo = "Modifica Libro";
+		m.addAttribute("titolo2", titolo);
+		
+		Libro modificare = srv.getLibroById(id);
+		//m.addAttribute("isUpdate", true);
+		m.addAttribute("newCanzone",modificare);
+		
+		
+		return "libri2";
+	}
+	
+	
 }

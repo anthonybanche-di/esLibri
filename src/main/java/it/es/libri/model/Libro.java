@@ -17,7 +17,7 @@ public class Libro {
 	
 	@Column(name="titolo", length = 50, nullable = false)
 	private String titolo;
-	@Column(name="pagine",  nullable = false)
+	@Column(name="pagine", nullable = false)
 	private int pagine;
 	@Column(name="prezzo", nullable = false)
 	private double prezzo;
