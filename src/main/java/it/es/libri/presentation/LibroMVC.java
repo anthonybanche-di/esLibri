@@ -56,7 +56,7 @@ public class LibroMVC {
 	@PostMapping("/updLibro")
 	public String updLibro(@ModelAttribute("libro") Libro l) {
 		srv.updLibro(l);
-		return "libri2";
+		return "redirect:/listaLibri";
 	}
 	
 	
