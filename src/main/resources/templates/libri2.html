@@ -2,7 +2,7 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Lista Libri</title>
 </head>
 <body>
 
@@ -31,7 +31,7 @@
 			</td>
 			
 			<td>
-				<form th:action="@{/listaLibri/updLibro/{id}(id=${libro.id})}"
+				<form th:action="@{/listaLibri/delLibro/{id}(id=${libro.id})}"
 					method="get">
 					<input type="text" hidden th:value="${libro.id}">
 					<button>Delete</button>
