@@ -22,8 +22,8 @@ public class LibroService {
 		return db.getById(id);
 	}
 	
-	public void addLibro(Libro l) {
-		db.save(l);
+	public Libro addLibro(Libro l) {
+		return db.save(l);
 	}
 	
 	public Libro updLibro(Libro l) {

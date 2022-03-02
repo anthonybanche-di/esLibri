@@ -59,6 +59,29 @@ public class LibroMVC {
 		return "redirect:/listaLibri";
 	}
 	
+	@GetMapping("/delLibro/{id}")
+	public String delLibro(@PathVariable("id") int id) {
+		
+		try {
+			srv.deleteLibroById(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return "redirect:/listaLibri";
+	}
+	
+	@PostMapping("/addLibro")
+	public String addLibro(@ModelAttribute("libro") Libro l,Model m ) {
+		
+		String titolo = "Aggiungi Libro";
+		 m.addAttribute("titolo",titolo);
+		 
+		 m.addAttribute("newLibro", srv.addLibro(l));
+		 
+		 return "redirect:/listaLibri";
+	}
+	
 	
 	
 }

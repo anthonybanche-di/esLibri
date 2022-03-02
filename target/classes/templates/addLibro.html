@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1 th:text="${titolo}"></h1>
+
+	<form action="#" th:action="@{/listaLibri/addLibro}"
+		th:object="${formLibro}" method="post">
+		<p>
+			<input type=number th:field="${formLibro.id}" />
+		</p>
+		<p>
+			Titolo: <input type=text th:field="${formLibro.titolo}" />
+		</p>
+		<p>
+			Pagine: <input type=number th:field="${formLibro.pagine}" />
+		</p>
+		<p>
+			Prezzo: <input type=number step=0.01 th:field="${formLibro.prezzo}"/>
+		</p>
+		<button>Aggiungi</button>
+	</form>
+</body>
+</html>
