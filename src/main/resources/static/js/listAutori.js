@@ -7,7 +7,7 @@ function deleteAutore(id) {
 		method: "DELETE"
 	})
 	
-	.then(data=> alert(data))
+	.then(data=>{ alert(data); location.reload();})
 	.catch(errore => {
 		alert(errore);
 	})
