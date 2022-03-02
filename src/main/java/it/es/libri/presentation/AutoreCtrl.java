@@ -60,7 +60,7 @@ public class AutoreCtrl {
 		else
 			model.addAttribute("message", srv.update(autore));			
 			
-		return this.get(model);
+		return "redirect:/autore/list";
 	}
 
 	@DeleteMapping()
