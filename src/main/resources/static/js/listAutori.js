@@ -13,9 +13,3 @@ function deleteAutore(id) {
 	})
 	
 }
-
-function gotoCarrello() {
-	
-	window.location.href="http://localhost:8080/carrello"
-	
-}
