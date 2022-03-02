@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -38,14 +39,14 @@ public class AutoreCtrl {
 		return "autore";
 	}
 	
-	@PostMapping()
+	@PostMapping("/add")
 	public String add(@ModelAttribute Autore autore, Model model) {	
 		autore.setId(-1);
 		model.addAttribute("message", srv.add(autore));
 		return this.get(model);
 	}
 	
-	@PostMapping()
+	@PutMapping("/upd")
 	public String update(@ModelAttribute Autore autore, Model model) {	
 		model.addAttribute("message", srv.update(autore));
 		return this.get(model);
