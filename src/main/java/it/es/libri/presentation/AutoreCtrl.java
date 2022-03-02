@@ -51,19 +51,18 @@ public class AutoreCtrl {
 		return "autore";
 	}
 	
-	@PostMapping("/add")
-	public String add(@ModelAttribute Autore autore, Model model) {	
-		autore.setId(0);
-		model.addAttribute("message", srv.add(autore));
+	@PostMapping("/save")
+	public String save(@RequestParam(value="isUpdate") boolean isUpdate, @ModelAttribute Autore autore, Model model) {	
+		if(!isUpdate) {
+			autore.setId(0);
+			model.addAttribute("message", srv.add(autore));			
+		}
+		else
+			model.addAttribute("message", srv.update(autore));			
+			
 		return this.get(model);
 	}
-	
-	@PutMapping("/upd")
-	public String update(@ModelAttribute Autore autore, Model model) {	
-		model.addAttribute("message", srv.update(autore));
-		return this.get(model);
-	}
-	
+
 	@DeleteMapping()
 	public String delete(@RequestParam(value="id", required=true) int autoreId, Model model) {
 		var autore = new Autore();

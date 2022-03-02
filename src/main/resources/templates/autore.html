@@ -8,11 +8,12 @@
 
 <h2 th:if="!${isUpdate}">Inserisci autore</h2>
 <h2 th:if="${isUpdate}">Modifica autore</h2>
-<form action="#" th:action="@{/autore/add}" th:object="${autore}" method="post">
+<form action="#" th:action="@{/autore/save}" th:object="${autore}" method="post">
 	<p> Id: <input type="number" th:field="${autore.id}"/></p>
 	<p> nome: <input type="text" th:field="${autore.nome}"/></p>
 	<p> cognome: <input type="text" th:field="${autore.cognome}"/></p>
 	<p> nazionalita: <input type="text" th:field="${autore.nazionalita}"/></p>
+	<input hidden="true" type="text" name="isUpdate" th:value="${isUpdate}"/>
 <!-- 
 	<p> <input type="submit" value="Aggiungi" th:onclick="'saveAutore('+${isUpdate}+')'"> </p>
  -->
