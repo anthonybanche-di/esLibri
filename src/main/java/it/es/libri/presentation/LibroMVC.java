@@ -36,6 +36,7 @@ public class LibroMVC {
 		
 		m.addAttribute("titolo",titolo);
 		m.addAttribute("libri", libri);
+		m.addAttribute("addLibro", new Libro());
 		
 		return "libri2";
 	}
@@ -71,15 +72,14 @@ public class LibroMVC {
 		return "redirect:/listaLibri";
 	}
 	
-	@PostMapping("/addLibro")
-	public String addLibro(@ModelAttribute("libro") Libro l,Model m ) {
+	@PostMapping("/saveLibro")
+	public String addLibro(Libro l) {
 		
-		String titolo = "Aggiungi Libro";
-		 m.addAttribute("titolo",titolo);
-		 
-		 m.addAttribute("newLibro", srv.addLibro(l));
-		 
-		 return "redirect:/listaLibri";
+		
+		srv.addLibro(l);
+		
+		
+		return "redirect:/listaLibri";
 	}
 	
 	
