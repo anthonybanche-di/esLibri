@@ -11,7 +11,7 @@
 		<h2 th:if="${isUpdate}">Modifica autore</h2>
 		<br>
 		<form action="#" th:action="@{/autore/save}" th:object="${autore}" method="post">
-			<div class="mb-3" th:if="id">
+			<div class="mb-3">
 				<label> Id: </label>
 				<input type="number" th:field="${autore.id}"  readonly/>
 			</div>
