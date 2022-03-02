@@ -31,17 +31,29 @@ public class AutoreCtrl {
 	public String getByID(@RequestParam(value="id", required=true) int autoreId, Model model) {
 				
 		var autore = srv.getByID(autoreId);
-		if(autore!=null)
-			model.addAttribute("autori", srv.getAll());
-		else
+		model.addAttribute("autore", autore);
+		
+		if(autore==null)
 			model.addAttribute("error", "#404 autore [id: "+autoreId+"] not found");		
+		
+		model.addAttribute("isUpdate", true);
+		
+		return "autore";
+	}
+	
+	@GetMapping("/new")
+	public String createNew(Model model) {
+				
+		model.addAttribute("autore", new Autore());
+		
+		model.addAttribute("isUpdate", false);
 		
 		return "autore";
 	}
 	
 	@PostMapping("/add")
 	public String add(@ModelAttribute Autore autore, Model model) {	
-		autore.setId(-1);
+		autore.setId(0);
 		model.addAttribute("message", srv.add(autore));
 		return this.get(model);
 	}
