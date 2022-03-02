@@ -88,16 +88,7 @@ public class LibroMVC {
 
 
 
-	@GetMapping("/addLibro")
-	public String addLibro(Model m) {
 
-		String titolo = "Aggiungi Libro";
-		
-		m.addAttribute("titolo", titolo);
-		m.addAttribute("formLibro", new Libro()); 
-
-		return "addLibro";
-	}
 
 
 
