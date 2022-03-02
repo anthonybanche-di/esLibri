@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
+
 
 import it.es.libri.model.Autore;
-import it.es.libri.model.Prodotto;
 import it.es.libri.model.Utente;
 import it.es.libri.service.AutoriService;
-import it.es.libri.service.CarrelloService;
 
 @RestController
 @RequestMapping("/api")

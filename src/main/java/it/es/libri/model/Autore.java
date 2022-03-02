@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.context.annotation.Scope;
 
 @Entity // -> Lo stereotipo entity identifica le classi che rappresentano delle tabelle di database
 @Table(name = "autore") //  -> E' il nome della tabella che viene collegata a questa classe

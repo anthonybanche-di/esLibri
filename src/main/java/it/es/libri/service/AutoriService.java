@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.es.libri.model.Autore;
-import it.es.libri.model.Prodotto;
-import it.es.libri.model.Utente;
 import it.es.libri.repository.AutoreDB;
-import it.es.libri.repository.ProdottiDB;
-import it.es.libri.repository.UtentiDB;
+
 
 @Service
 public class AutoriService {
