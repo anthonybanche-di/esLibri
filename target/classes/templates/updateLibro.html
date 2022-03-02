@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Modifica Libro</title>
 </head>
 <body>
+
+	<h1 th:text="${titolo2}"></h1>
 
 	<form action="#" th:action="@{/listaLibri/updLibro}" th:object="${formLibro}" method="post">
 		<p><input readonly hidden type=number th:field="${formLibro.id}"/> </p>
