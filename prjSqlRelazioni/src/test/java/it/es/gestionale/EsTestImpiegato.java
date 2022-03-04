@@ -96,8 +96,10 @@ class EsTestImpiegato {
 	 Conta e mostra il numero di ordini a sistema di ogni impiegato
 	*/
 	@Test
+	@Transactional
 	void esCountOrdiniAllImp() {
-		assertTrue(false);
+		//Lo stesso rispetto al punto 2
+		esCountOrdiniImp();
 		
 	}
 
