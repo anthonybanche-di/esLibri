@@ -1,5 +1,7 @@
 package it.es.gestionale.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,12 +36,17 @@ public class ImpiegatoEntity {
 	@ManyToOne
 	@JoinColumn(name="ufficio_id")
 	private UfficioEntity ufficio;
-
 	
+	@OneToMany(mappedBy ="impiegato")
+	private List<OrdineEntity> ordini;
+	
+	public List<OrdineEntity> getOrdini() {
+		return ordini;
+	}
+
 	public UfficioEntity getUfficio() {
 		return ufficio;
 	}
-
 
 	public int getId() {
 		return id;
