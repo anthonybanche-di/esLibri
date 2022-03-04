@@ -2,6 +2,9 @@ package it.es.gestionale;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 import it.es.gestionale.model.ImpiegatoEntity;
 import it.es.gestionale.model.OrdineEntity;
 import it.es.gestionale.repository.ImpiegatoDB;
@@ -34,23 +37,28 @@ class EsTestImpiegato {
 	*/
 	@Test
 	void esCountOrdiniImp() {
-		int numOrdImp4=0;
-		int numOrdImp8=0;
-		for (ImpiegatoEntity impiegato : this.db.findAll())
-			{
-				switch (impiegato.getId()) {
-					case 4:
-					numOrdImp4++;
-					break;
-					case 8:
-					numOrdImp8++;
-					break;
-				}
-			}
-			System.out.println("numOrdImp4");
-		assertTrue(numOrdImp4==5);
-		assertTrue(numOrdImp8==2);
+		var impiegati = this.db.findAll();
+		var numOrdini = new HashMap<Integer,Integer>();
+		int[] valoriAttesi = {0,0,0,5,0,0,0,2,0};
 		
+//		int numOrdImp4=0;
+//		int numOrdImp8=0;
+		for (ImpiegatoEntity impiegato : impiegati )
+			numOrdini.put(impiegato.getId(), impiegato.getOrdini().size());
+//				
+//				switch (impiegato.getId()) {
+//					case 4:
+//					numOrdImp4++;
+//					break;
+//					case 8:
+//					numOrdImp8++;
+//					break;
+//				}
+		
+		for (var check : numOrdini.entrySet()) {
+			System.out.println("numero oridini impiegato ["+check.getKey()+"] = "+check.getValue());
+			assertTrue(check.getValue()==valoriAttesi[check.getKey()-1]);			
+		}
 	}
 
 	/*
