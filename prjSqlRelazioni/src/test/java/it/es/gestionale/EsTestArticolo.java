@@ -2,24 +2,44 @@ package it.es.gestionale;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import it.es.gestionale.repository.UfficioDB;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import it.es.gestionale.model.ArticoloEntity;
+import it.es.gestionale.model.DettaglioEntity;
+import it.es.gestionale.model.OrdineEntity;
+import it.es.gestionale.repository.ArticoloDB;
+import it.es.gestionale.repository.DettaglioDB;
+import it.es.gestionale.repository.OrdineDB;
+import it.es.gestionale.repository.UfficioDB;
+
 @SpringBootTest
 class EsTestArticolo {
+	
 	@Autowired
-	UfficioDB db;
+	ArticoloDB dbArt;
+
+	@Autowired
+	DettaglioDB dbDet;
+	
+	@Autowired
+	OrdineDB dbOr;
 
 	/*
 	 Elenca (mediante Sysout) gli utenti che hanno ordinato l'articolo
 	*/
 	@Test
 	void esOrdiniImp() {
-
-		int idArticolo=4;
+		
+		List<DettaglioEntity> dettagli = dbDet.findAll();
+		
+		for(DettaglioEntity dettaglio : dettagli) {
+			if(dettaglio.getArticolo().getId() == 4) System.out.println(dettaglio.getOrdine().getClienteId());
+		}
+		
 		assertTrue(false);
 	}
 

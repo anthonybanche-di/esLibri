@@ -76,5 +76,13 @@ public class ArticoloEntity {
 		this.rimanenza = rimanenza;
 	}
 
+	public List<DettaglioEntity> getDettagli() {
+		return dettagli;
+	}
+
+	public void setDettagli(List<DettaglioEntity> dettagli) {
+		this.dettagli = dettagli;
+	}
+
 	
 }
