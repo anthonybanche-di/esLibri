@@ -34,8 +34,6 @@ public class OrdineEntity {
 	@Column(name="consegna")
 	private String consegna;
 
-
-
 	public int getId() {
 		return id;
 	}

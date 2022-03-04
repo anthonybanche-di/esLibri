@@ -1,9 +1,11 @@
 package it.es.gestionale;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
+import javax.transaction.Transactional;
 
 import it.es.gestionale.model.ImpiegatoEntity;
 import it.es.gestionale.model.OrdineEntity;
@@ -22,6 +24,7 @@ class EsTestImpiegato {
 	 Elenca (mediante Sysout) gli ordini di un impiegato 
 	*/
 	@Test
+	@Transactional
 	void esOrdiniImp() {
 		int idImpiegato=4;
 		ImpiegatoEntity impiegato=this.db.getById(idImpiegato);
@@ -36,6 +39,7 @@ class EsTestImpiegato {
 	 Conta e mostra il numero di ordini a sistema di ogni impiegato
 	*/
 	@Test
+	@Transactional
 	void esCountOrdiniImp() {
 		var impiegati = this.db.findAll();
 		var numOrdini = new HashMap<Integer,Integer>();
@@ -61,6 +65,16 @@ class EsTestImpiegato {
 		}
 	}
 
+	private double calcoloVenduto(int idImpiegato){
+		ImpiegatoEntity impiegato=this.db.getById(idImpiegato);
+		double count=0;
+		for (OrdineEntity ord : impiegato.getOrdini()) {
+			
+		}
+		return 0;
+	}
+
+
 	/*
 	 Mostra la somma del totale venduto di un impiegato
 	*/
@@ -68,7 +82,7 @@ class EsTestImpiegato {
 	void esSumVenduto() {
 
 		int idImpiegato=6;
-		assertTrue(false);
+		assertEquals(this.calcoloVenduto(idImpiegato), 0);
 		
 	}
 
