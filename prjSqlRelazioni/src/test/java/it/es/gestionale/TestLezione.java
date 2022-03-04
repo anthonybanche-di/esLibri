@@ -1,6 +1,8 @@
 package it.es.gestionale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
@@ -32,7 +34,32 @@ class TestLezione {
 
 		System.out.println("-------");
 		for(UfficioEntity u:luf){
-			System.out.println(u.toString());
+			switch(u.getId()){
+				case 1:
+				assertEquals("IT", u.getNome());
+				break;
+				case 2:
+				assertEquals("Amministrazione", u.getNome());
+				break;
+				case 3:
+				assertEquals("Commerciale", u.getNome());
+				break;
+				default:
+				break;
+			}
+		}
+		
+		System.out.println("-------");
+
+	}
+
+	@Test
+	@Transactional 
+	void tuttiGliUfficiHannoAlmenoUnDipendente() {
+
+		List<UfficioEntity> luf=tabellaUfficio.findAll();
+		for(UfficioEntity u:luf){
+			assertTrue( u.getImpiegati().size()>=1) ;
 		}
 		
 		System.out.println("-------");
