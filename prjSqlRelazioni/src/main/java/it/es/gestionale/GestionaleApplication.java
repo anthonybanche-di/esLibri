@@ -1,13 +1,13 @@
-package it.es.libri;
+package it.es.gestionale;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LibriApplication {
+public class GestionaleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LibriApplication.class, args);
+		SpringApplication.run(GestionaleApplication.class, args);
 	}
 
 }
