@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GestionaleApplicationTests {
+class EsTestCliente {
 	@Autowired
 	EsempioDB db;
 
