@@ -27,7 +27,7 @@ public class EsempioCtrl {
 		String titolo = "Elenco degli editori";
 		
 		model.addAttribute("titolo", titolo);
-		model.addAttribute("editori", srv.getListaEditori());
+		//model.addAttribute("editori", srv.getListaEditori());
 		// Passiamo la lista mediante il "passacarte" del service
 		
 		if(session.getAttribute("esito") != null) {
@@ -42,7 +42,7 @@ public class EsempioCtrl {
 	public String addEditore(Model model, String nome, String contatto, HttpSession session) {
 		
 		try {
-			session.setAttribute("esito", "Editore numero " + srv.saveEditore(new EsempioModel(nome, contatto)).getId() + " inserito correttamente.");
+			//session.setAttribute("esito", "Editore numero " + srv.saveEditore(new EsempioModel(nome, contatto)).getId() + " inserito correttamente.");
 			
 		} catch(Exception e) {
 			session.setAttribute("esito", "Qualcosa è andato storto: " + e.getMessage() + ".");
@@ -55,7 +55,7 @@ public class EsempioCtrl {
 	public String modifyEditore(EsempioModel editore, Model model, HttpSession session) {
 	
 		try {
-			session.setAttribute("esito", "Editore numero " + srv.saveEditore(editore).getId() + " modificato correttamente.");
+			//session.setAttribute("esito", "Editore numero " + srv.saveEditore(editore).getId() + " modificato correttamente.");
 		} catch(Exception e) {
 			session.setAttribute("esito", "Qualcosa è andato storto: " + e.getMessage() + ".");
 		}

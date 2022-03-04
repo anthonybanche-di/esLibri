@@ -2,7 +2,7 @@ package it.es.gestionale;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import it.es.gestionale.repository.EsempioDB;
+import it.es.gestionale.repository.UfficioDB;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class EsTestCliente {
 	@Autowired
-	EsempioDB db;
+	UfficioDB db;
 
 	/*
 	 Elenca (mediante Sysout) gli ordini del cliente 4

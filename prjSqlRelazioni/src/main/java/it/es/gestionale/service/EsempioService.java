@@ -6,28 +6,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.es.gestionale.model.EsempioModel;
-import it.es.gestionale.repository.EsempioDB;
 
 @Service
 public class EsempioService {
 	
-	@Autowired
-	EsempioDB dbEdi;
+	// @Autowired
+	// UfficioDB dbEdi;
 	
-	public List<EsempioModel> getListaEditori() {
-		return dbEdi.findAll();	//Passacarte
-	}
+	// public List<EsempioModel> getListaEditori() {
+	// 	return dbEdi.findAll();	//Passacarte
+	// }
 	
-	public EsempioModel saveEditore(EsempioModel e){
-		return dbEdi.save(e);
-	}
+	// public EsempioModel saveEditore(EsempioModel e){
+	// 	return dbEdi.save(e);
+	// }
 
-	public void deleteEditore(int id) {
-		dbEdi.delete(dbEdi.getById(id));
-	}
+	// public void deleteEditore(int id) {
+	// 	dbEdi.delete(dbEdi.getById(id));
+	// }
 	
-	public EsempioModel getByid(int id) {
-		return dbEdi.findById(id).orElse(new EsempioModel());
-	}
+	// public EsempioModel getByid(int id) {
+	// 	return dbEdi.findById(id).orElse(new EsempioModel());
+	// }
 
 }

@@ -26,7 +26,7 @@ public class EsempioREST {
 	public String deleteEditore(@PathVariable("id") int id, HttpSession session) {
 
 		try {
-			srv.deleteEditore(id);
+			//srv.deleteEditore(id);
 			session.setAttribute("esito", "Cancellazione avvenuta correttamente.");
 			return "Cancellazione avvenuta correttamente.";
 		} catch(Exception e) {
@@ -35,17 +35,7 @@ public class EsempioREST {
 		}
 
 	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<EsempioModel> findEditore(@PathVariable("id") int id) {
-		
-		try {
-			EsempioModel x = srv.getByid(id);
-			return ResponseEntity.ok(x);
-		}catch (Exception e) {
-			return ResponseEntity.ok(new EsempioModel());
-		}
-	}
+
 	
 
 //	@PostMapping("/saveCanzone")
