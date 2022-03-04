@@ -62,6 +62,14 @@ public class OrdineEntity {
 	public void setConsegna(String consegna) {
 		this.consegna = consegna;
 	}
+
+	public List<DettaglioEntity> getDettagli() {
+		return dettagli;
+	}
+
+	public void setDettagli(List<DettaglioEntity> dettagli) {
+		this.dettagli = dettagli;
+	}
 	
 	
 }

@@ -59,12 +59,14 @@ class TestLezione {
 
 		List<UfficioEntity> luf=tabellaUfficio.findAll();
 		for(UfficioEntity u:luf){
-			assertTrue( u.getImpiegati().size()>=1) ;
+			assertTrue(u.getImpiegati().size()>=1) ;
 		}
 		
 		System.out.println("-------");
 
 	}
+	
+	
 
 	
 
