@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 
 import javax.transaction.Transactional;
 
+import it.es.gestionale.model.DettaglioEntity;
 import it.es.gestionale.model.ImpiegatoEntity;
 import it.es.gestionale.model.OrdineEntity;
 import it.es.gestionale.repository.ImpiegatoDB;
@@ -69,9 +70,11 @@ class EsTestImpiegato {
 		ImpiegatoEntity impiegato=this.db.getById(idImpiegato);
 		double count=0;
 		for (OrdineEntity ord : impiegato.getOrdini()) {
-			
+			for (DettaglioEntity de : ord.getDettagli()) {
+				count += de.getArticolo().getPrezzo()*de.getQuantita();
+			}
 		}
-		return 0;
+		return count;
 	}
 
 
@@ -79,10 +82,13 @@ class EsTestImpiegato {
 	 Mostra la somma del totale venduto di un impiegato
 	*/
 	@Test
+	@Transactional
 	void esSumVenduto() {
 
 		int idImpiegato=6;
-		assertEquals(this.calcoloVenduto(idImpiegato), 0);
+		double somma=this.calcoloVenduto(idImpiegato);
+		System.out.println("Somma= "+somma);
+		assertEquals(somma, 0);
 		
 	}
 
@@ -90,8 +96,10 @@ class EsTestImpiegato {
 	 Conta e mostra il numero di ordini a sistema di ogni impiegato
 	*/
 	@Test
+	@Transactional
 	void esCountOrdiniAllImp() {
-		assertTrue(false);
+		//Lo stesso rispetto al punto 2
+		esCountOrdiniImp();
 		
 	}
 
