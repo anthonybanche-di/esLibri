@@ -1,7 +1,7 @@
 package it.es.gestionale;
 
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.List;
 
@@ -13,11 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import it.es.gestionale.model.ArticoloEntity;
 import it.es.gestionale.model.DettaglioEntity;
-import it.es.gestionale.model.OrdineEntity;
 import it.es.gestionale.repository.ArticoloDB;
 import it.es.gestionale.repository.DettaglioDB;
 import it.es.gestionale.repository.OrdineDB;
-import it.es.gestionale.repository.UfficioDB;
 
 @SpringBootTest
 class EsTestArticolo {
@@ -32,9 +30,10 @@ class EsTestArticolo {
 	OrdineDB dbOr;
 
 	/*
-	 Elenca (mediante Sysout) gli utenti che hanno ordinato l'articolo 4
+	 Elenca gli utenti che hanno ordinato l'articolo 4
 	*/
 	@Test
+	@Transactional
 	void esOrdiniImp() {
 		
 		List<DettaglioEntity> dettagli = dbDet.findAll();
@@ -45,7 +44,7 @@ class EsTestArticolo {
 				switch(dettaglio.getOrdine().getCliente().getId()) {
 				case 5: break;
 				case 6: break;
-				default: fail(); //identico con assertTrue(false);
+				default: fail(); //assertTrue(false);
 				break;
 				}
 			}
@@ -66,23 +65,28 @@ class EsTestArticolo {
 			case 8:
 			case 9:
 				if(articolo.getDettagli().size() != 0) fail();
+				//assertEquals(articolo.getDettagli().size(), 0);
 				break;
 			case 6: 
 				if(articolo.getDettagli().size() != 1) fail();
+				//assertEquals(articolo.getDettagli().size(), 1);
 				break;
 			case 1:
 			case 4:
 			case 5:
 				if(articolo.getDettagli().size() != 2) fail();
+				//assertEquals(articolo.getDettagli().size(), 2);
 				break;
 			case 2:
 			case 3:
 				if(articolo.getDettagli().size() != 3) fail();
+				//assertEquals(articolo.getDettagli().size(), 3);
 				break;
 			case 7:
 				if(articolo.getDettagli().size() != 4) fail();
+				//assertEquals(articolo.getDettagli().size(), 4);
 				break;
-			default: fail();
+			default: fail(); //assertTrue(false);
 				break;
 			}
 			//System.out.println("ID: " + articolo.getId() + " count(ordine_id): " + articolo.getDettagli().size());
@@ -109,9 +113,10 @@ class EsTestArticolo {
 		for(int i = 0; i<risultati.length; i++) {
 			//System.out.println("ID: " + (i+1) + " count(ordine_id): " + somme[i]);
 			if(somme[i] != risultati[i]) fail();
+			//assertEquals(somme[i], risultati[i]);
 		}
 	}
-		//assertTrue(false);
+		
 
 	/*
 	 Mostra il cliente che ha ordinato il numero maggiore di articolo 2
@@ -141,7 +146,8 @@ class EsTestArticolo {
 		
 		if(maxCID != 5 || maxQ != 10) fail();
 		
-		//assertTrue(false);
+		//assertEquals(5, maxCID);
+		//assertEquals(10, maxQ);
 		
 	}
 }
