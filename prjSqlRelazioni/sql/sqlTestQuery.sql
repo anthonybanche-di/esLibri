@@ -2,6 +2,11 @@
 /*                  IMPIEGATO TEST                  */
 /****************************************************/
 
+/*  check order id for impiegato */
+select o.id
+    from ordine o 
+        where o.impiegato_id = 4;
+
 /*  check n# order for impiegato */
 select i.id, count(o.id) 
     from ordine o, impiegato i 

@@ -2,8 +2,14 @@ package it.es.gestionale;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -28,12 +34,17 @@ class EsTestImpiegato {
 	@Transactional
 	void esOrdiniImp() {
 		int idImpiegato=4;
+		Set<Integer> idOrdiniAttesiRimasti = new HashSet<>(
+				List.of(new Integer[] {1,2,4,5,12})
+				);
+		
 		ImpiegatoEntity impiegato=this.db.getById(idImpiegato);
 		for (OrdineEntity ordine:impiegato.getOrdini()) {
 			System.out.println(ordine);
+			idOrdiniAttesiRimasti.remove(ordine.getId());
 		}
 		
-		assertTrue(true);
+		assertEquals(0,idOrdiniAttesiRimasti.size());
 	}
 
 	/*
@@ -44,28 +55,35 @@ class EsTestImpiegato {
 	void esCountOrdiniImp() {
 		var impiegati = this.db.findAll();
 		var numOrdini = new HashMap<Integer,Integer>();
-		int[] valoriAttesi = {0,0,0,5,0,0,0,2,0};
 		
-//		int numOrdImp4=0;
-//		int numOrdImp8=0;
-		for (ImpiegatoEntity impiegato : impiegati )
+		int[][] arrayValoriAttesi = {
+				{1,0},{2,0},{3,0},{4,5},{5,0},{6,0},{7,0},{8,2},{9,0}
+				};
+		var valoriAttesi = Arrays.stream(arrayValoriAttesi)
+				.collect(Collectors.toMap(array->array[0], array->array[1]));
+		
+		for (ImpiegatoEntity impiegato : impiegati )	
 			numOrdini.put(impiegato.getId(), impiegato.getOrdini().size());
-//				
-//				switch (impiegato.getId()) {
-//					case 4:
-//					numOrdImp4++;
-//					break;
-//					case 8:
-//					numOrdImp8++;
-//					break;
-//				}
 		
-		for (var check : numOrdini.entrySet()) {
-			System.out.println("numero oridini impiegato ["+check.getKey()+"] = "+check.getValue());
-			assertTrue(check.getValue()==valoriAttesi[check.getKey()-1]);			
+		assertEquals(valoriAttesi.size(), numOrdini.size());
+		
+		for (var ordiniImpiegato : numOrdini.entrySet()) {
+			System.out.println("numero oridini impiegato ["+ordiniImpiegato.getKey()+"] = "+ordiniImpiegato.getValue());
+			assertEquals(ordiniImpiegato.getValue(),valoriAttesi.get(ordiniImpiegato.getKey()));			
 		}
 	}
 
+	@SuppressWarnings("unused")
+	private double calcoloVendutoStream(int idImpiegato){
+		return this.db.getById(idImpiegato).getOrdini().stream()
+				.flatMapToDouble(o->
+					o.getDettagli().stream()
+					.mapToDouble(de->
+						de.getArticolo().getPrezzo()*de.getQuantita()
+						)
+					)
+				.sum();
+	}
 	private double calcoloVenduto(int idImpiegato){
 		ImpiegatoEntity impiegato=this.db.getById(idImpiegato);
 		double count=0;
@@ -77,7 +95,6 @@ class EsTestImpiegato {
 		return count;
 	}
 
-
 	/*
 	 Mostra la somma del totale venduto di un impiegato
 	*/
@@ -88,7 +105,7 @@ class EsTestImpiegato {
 		int idImpiegato=6;
 		double somma=this.calcoloVenduto(idImpiegato);
 		System.out.println("Somma= "+somma);
-		assertEquals(somma, 0);
+		assertEquals(0,somma);
 		
 	}
 
