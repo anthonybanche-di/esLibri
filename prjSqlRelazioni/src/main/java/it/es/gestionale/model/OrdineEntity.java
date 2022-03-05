@@ -45,10 +45,6 @@ public class OrdineEntity {
 
 	@OneToMany(mappedBy ="ordine")
 	private List<DettaglioEntity> dettagli;
-	
-	public List<DettaglioEntity> getDettagli() {
-		return dettagli;
-	}
 
 	public int getId() {
 		return id;
