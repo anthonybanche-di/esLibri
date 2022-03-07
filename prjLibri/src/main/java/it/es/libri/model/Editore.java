@@ -21,11 +21,14 @@ public class Editore {
 	@Column(name="contatto", length = 100, nullable = true)
 	private String contatto;
 	
-	public Editore() {}
+	private String immagine;
 	
-	public Editore(String nome, String contatto) {
+	public Editore() {}
+
+	public Editore(String nome, String contatto, String immagine) {
 		this.nome = nome;
 		this.contatto = contatto;
+		this.immagine = immagine;
 	}
 
 	public int getId() {
@@ -52,9 +55,19 @@ public class Editore {
 		this.contatto = contatto;
 	}
 
+	public String getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
+	}
+
 	@Override
 	public String toString() {
-		return "Editore [id=" + id + ", nome=" + nome + ", contatto=" + contatto + "]";
+		return "Editore [id=" + id + ", nome=" + nome + ", contatto=" + contatto + ", immagine=" + immagine + "]";
 	}
+	
+	
 	
 }

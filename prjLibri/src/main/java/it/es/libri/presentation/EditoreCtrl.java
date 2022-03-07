@@ -39,10 +39,10 @@ public class EditoreCtrl {
 	}
 	
 	@PostMapping("/add-editore")
-	public String addEditore(Model model, String nome, String contatto, HttpSession session) {
+	public String addEditore(Model model, String nome, String contatto, String immagine, HttpSession session) {
 		
 		try {
-			session.setAttribute("esito", "Editore numero " + srv.saveEditore(new Editore(nome, contatto)).getId() + " inserito correttamente.");
+			session.setAttribute("esito", "Editore numero " + srv.saveEditore(new Editore(nome, contatto, immagine)).getId() + " inserito correttamente.");
 			
 		} catch(Exception e) {
 			session.setAttribute("esito", "Qualcosa è andato storto: " + e.getMessage() + ".");

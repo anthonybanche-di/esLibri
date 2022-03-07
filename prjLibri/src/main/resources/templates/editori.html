@@ -15,6 +15,7 @@
           <th scope="col">ID</th> 
           <th scope="col">NOME</th>
           <th scope="col">CONTATTO</th>
+          <th scope="col">IMMAGINE</th>
           <th scope="col">AZIONI</th>
         </tr>
       </thead>
@@ -23,7 +24,7 @@
             <td th:text="${editore.id}"></td>
             <td th:text="${editore.nome}"></td>
             <td th:text="${editore.contatto}"></td>
-
+			<td> <img th:src="${editore.immagine}"/></td>
             <!-- Bottoni Tabella-->
             <td><div>
             <!--Bottone "modifica"-->
