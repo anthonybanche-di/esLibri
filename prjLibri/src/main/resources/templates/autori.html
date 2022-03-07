@@ -20,6 +20,7 @@
 	<table id="tabellaAutori" class="table table-striped" th:if="${autori} != null">
 	  <tr>
 		<th>Id</th>
+		<th>Img</th>		
 		<th>Nome</th>
 		<th>Cognome</th>
 		<th>Nazionalità</th>
@@ -28,6 +29,7 @@
 	  </tr>
 		<tr th:each="autore : ${autori}">
 			<td th:text="${autore.id}"> </td>
+			<td> <img th:src="${autore.immagine}"/></td>
 			<td th:text="${autore.nome}"></td>
 			<td th:text="${autore.cognome}"></td>
 			<td th:text="${autore.nazionalita}"></td>

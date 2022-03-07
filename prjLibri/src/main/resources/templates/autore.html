@@ -10,7 +10,7 @@
 		<h2 th:if="!${isUpdate}">Inserisci autore</h2>
 		<h2 th:if="${isUpdate}">Modifica autore</h2>
 		<br>
-		<form action="#" th:action="@{/autore/save}" th:object="${autore}" method="post">
+		<form action="#" th:action="@{/autore/save}" th:object="${autore}" method="post" enctype="multipart/form-data">
 			<div class="mb-3">
 				<label> Id: </label>
 				<input type="number" th:field="${autore.id}"  readonly/>
@@ -27,7 +27,11 @@
 				<label> Nazionalita: </label>
 				<input type="text" th:field="${autore.nazionalita}" placeholder="es"/>
 			</div>
-			<input hidden="true" type="text" name="isUpdate" th:value="${isUpdate}"/>
+			<div class="mb-3">
+				<label> Immagine: </label>
+				<input type="file" name="image" accept="image/png, image/jpeg" placeholder="es"/>
+			</div>
+			<input hidden="true" type="text" name="isUpdate" th:value="${isUpdate}"/>	
 			<!--
 				<p> <input type="submit" value="Aggiungi" th:onclick="'saveAutore('+${isUpdate}+')'"> </p>
 			-->

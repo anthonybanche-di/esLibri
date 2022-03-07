@@ -1,5 +1,7 @@
 package it.es.libri.presentation;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,11 +9,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.es.libri.model.Autore;
+import it.es.libri.service.AutoreFileService;
 import it.es.libri.service.AutoriService;
 
 @Controller
@@ -20,6 +23,9 @@ public class AutoreCtrl {
 
 	@Autowired
 	AutoriService srv;
+	
+	@Autowired
+	AutoreFileService fs;
 	
 	@GetMapping("/list")
 	public String get(Model model) {		
@@ -52,7 +58,18 @@ public class AutoreCtrl {
 	}
 	
 	@PostMapping("/save")
-	public String save(@RequestParam(value="isUpdate") boolean isUpdate, @ModelAttribute Autore autore, Model model) {	
+	public String save(@RequestParam(value="isUpdate") boolean isUpdate,@RequestParam(name="image") MultipartFile immagine, @ModelAttribute Autore autore, Model model) {	
+		
+		if(immagine!=null){
+			try{
+				String percorso=fs.saveFile("img/autori", immagine);
+				System.out.println(percorso);
+				autore.setImmagine(percorso);
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+		
 		if(!isUpdate) {
 			autore.setId(0);
 			model.addAttribute("message", srv.add(autore));			

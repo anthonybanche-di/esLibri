@@ -25,6 +25,17 @@ public class Autore {
 	@Column(length = 2)
 	private String nazionalita;
 	
+	@Column(name="immagine")
+	private String immagine;
+
+	public String getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
+	}
+
 	public Autore() {
 		super();
 	}
