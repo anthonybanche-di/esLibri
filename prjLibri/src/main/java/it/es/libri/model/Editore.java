@@ -21,6 +21,7 @@ public class Editore {
 	@Column(name="contatto", length = 100, nullable = true)
 	private String contatto;
 	
+	@Column(name="immagine")
 	private String immagine;
 	
 	public Editore() {}

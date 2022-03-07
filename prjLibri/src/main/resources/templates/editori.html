@@ -31,7 +31,7 @@
             <button th:onclick="'openForm('+${editore.id}+')'" style="display: inline;" type="button" class="btn btn-primary">Modifica</button>
             <!-- Popup "Modifica"-->
             <div class="form-popup" id="myForm">
-            <form id="formAddEdit" action="/lista-editori/modify-editore" method="post" class="form-container">
+            <form id="formAddEdit" action="/lista-editori/modify-editore" method="post" class="form-container" enctype="multipart/form-data">
               <!--Titolo popup-->
             <div>
             <h1 id="titleAdd">Modifica</h1>
@@ -47,7 +47,11 @@
               <!--Contatto editore-->
             <label for="contatto"><b>Contatto</b></label></br>
             <input id="contattoInput" type="email" placeholder="Contatto editore" name="contatto">
-        
+            
+              <!--Immagine editore-->
+            <label for="immagine"><b>Immagine</b></label></br>
+            <input id="immagineInput" type="file" placeholder="Contatto editore" name="img" accept="image/png, image/jpeg">
+
               <!--Bottoni popup-->
             <input id="editButton" type="submit" value="Aggiungi" class="btn">
             <button type="button" class="btn cancel" onclick="closeForm()">Chiudi</button>
@@ -69,7 +73,7 @@
 
     <!-- Popup "Aggiungi"-->
     <div class="form-popup" id="myForm2">
-    <form id="formAddEdit" action="/lista-editori/add-editore" method="post" class="form-container">
+    <form id="formAddEdit" action="/lista-editori/modify-editore" method="post" class="form-container" enctype="multipart/form-data">
       <!--Titolo popup-->
     <div>
     <h1 id="titleAdd">Aggiungi</h1>
@@ -85,6 +89,10 @@
       <!--Contatto editore-->
     <label for="contatto"><b>Contatto</b></label></br>
     <input id="contattoInput" type="email" placeholder="Contatto editore" name="contatto">
+    
+     <!--Immagine editore-->
+     <label for="immagine"><b>Immagine</b></label></br>
+     <input id="immagineInput" type="file" name="img" accept="image/png, image/jpeg">
 
       <!--Bottoni popup-->
     <input id="editButton" type="submit" value="Aggiungi" class="btn">
