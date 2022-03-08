@@ -21,6 +21,8 @@ public class Libro {
 	private int pagine;
 	@Column(name="prezzo", nullable = false)
 	private double prezzo;
+	@Column(name="immagine", nullable = false)
+	private String immagine;
 	
 	public Libro() {
 	}
@@ -56,6 +58,13 @@ public class Libro {
 	public void setPrezzo(double prezzo) {
 		this.prezzo = prezzo;
 	}
-	
+
+	public String getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
+	}
 	
 }

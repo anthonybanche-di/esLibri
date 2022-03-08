@@ -1,5 +1,6 @@
 package it.es.libri.presentation;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.es.libri.model.Libro;
 import it.es.libri.model.Utente;
+import it.es.libri.service.FileService;
 import it.es.libri.service.LibroService;
 
 @Controller
@@ -24,6 +28,9 @@ public class LibroMVC {
 
 	@Autowired
 	LibroService srv;
+
+	@Autowired
+	FileService fs;
 
 
 
@@ -75,20 +82,13 @@ public class LibroMVC {
 
 
 	@PostMapping("/saveLibro")
-	public String addLibro(Libro l) {
+	public String addLibro(Libro l ,@RequestPart (name="file") MultipartFile file) throws IOException {
+	
+		srv.addLibro(l,file);
 		
-		
-		srv.addLibro(l);
-		
-		
+	
 		return "redirect:/listaLibri";
 	}
-	
-	
-
-
-
-
 
 
 

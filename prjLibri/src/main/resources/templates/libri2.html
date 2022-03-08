@@ -12,18 +12,21 @@
 	<button onclick="asd()">Aggiungi</button>
 	
 	<form id="formAdd" style="display: none;" action="#" th:action="@{/listaLibri/saveLibro}"
-		th:object="${addLibro}" method="post">
+		th:object="${addLibro}" method="post" enctype="multipart/form-data">
 		<p>
-			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="${addLibro.id}" />
 		</p>
 		<p>
-			Titolo: <input type="text"th:field="*{titolo}" />
+			Titolo: <input type="text"th:field="${addLibro.titolo}" />
 		</p>
 		<p>
-			Pagine: <input type="number" th:field="*{pagine}" />
+			Pagine: <input type="number" th:field="${addLibro.pagine}" />
 		</p>
 		<p>
-			Prezzo: <input type="number" step=0.01 th:field="*{prezzo}"/>
+			Prezzo: <input type="number" step=0.01 th:field="${addLibro.prezzo}"/>
+		</p>
+		<p>
+			Immagine: <input type="file" name="file" accept="image/png, image/jpeg, image/jpg" />
 		</p>
 		<button>Salva</button>
 	</form>
@@ -34,14 +37,16 @@
 			<th>titolo</th>
 			<th>pagine</th>
 			<th>prezzo</th>
+			<th>immagine</th>
 		</tr>
 
 
 		<tr th:each="libro : ${libri}">
 			<td th:text="${libro.id}"></td>
 			<td th:text="${libro.titolo}"></td>
-			<td th:text="${libro.prezzo}"></td>
 			<td th:text="${libro.pagine}"></td>
+			<td th:text="${libro.prezzo}"></td>
+			<td><img th:src="${libro.immagine}"/></td>
 			<td>
 				<form th:action="@{/listaLibri/updLibro/{id}(id=${libro.id})}"
 					method="get">
