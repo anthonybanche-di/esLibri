@@ -73,4 +73,7 @@ public class Autore {
 		return "Autore [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", nazionalita=" + nazionalita + "]";
 	}
 	
+	public String toCsv() {
+		return String.join(";", new String[] {this.nome,this.cognome,this.nazionalita});
+	}
 }
