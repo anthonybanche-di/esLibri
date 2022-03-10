@@ -1,16 +1,23 @@
 package it.es.libri.presentation;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -63,33 +70,32 @@ public class EditoreCtrl {
 		return "redirect:/lista-editori";	
 	}
 	
-	//	@PostMapping("/add-editore")
-	//	public String addEditore(Model model, String nome, String contatto, String immagine, HttpSession session) {
-	//		
-	//		try {
-	//			session.setAttribute("esito", "Editore numero " + srv.saveEditore(new Editore(nome, contatto, immagine)).getId() + " inserito correttamente.");
-	//			
-	//		} catch(Exception e) {
-	//			session.setAttribute("esito", "Qualcosa è andato storto: " + e.getMessage() + ".");
-	//		}
-	//		
-	//		return "redirect:/lista-editori";
-	//	}
+	@GetMapping("/export")
+	public ResponseEntity downloadEditore(String param) throws IOException {
 
+		String outFile = srv.exportCsv();
 
-	//	@PostMapping("/save")
-	//	public String saveArt(Model model, Editore editoreForm, ) {
-	//
-	//		if(immagine!=null){
-	//			try{
-	//				String percorso=fs.saveFile("img/editori", editoreForm.getImmagine()+immagine.getName(), immagine);
-	//				editoreForm.setImmagine(percorso);
-	//			}catch(IOException e){
-	//				e.printStackTrace();
-	//			}
-	//		}
-	//
-	//		srv.save(editoreForm);
-	//		return "redirect:/articolo/lista";
-	//	}
+		if (outFile != null) {
+			File download = new File(outFile);
+			InputStreamResource resource = new InputStreamResource(new FileInputStream(download));
+
+			return ResponseEntity.ok()
+					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + "exportedEditor.csv")
+					.contentLength(download.length())
+					.contentType(MediaType.APPLICATION_OCTET_STREAM)
+					.body(resource);
+		}
+
+		return null;
+	}
+
+	@PostMapping("/import")
+	public ResponseEntity insertCSVEditore(@RequestPart("fileCSV") MultipartFile file) {
+		
+		srv.importCsv(file);
+		return ResponseEntity.ok().build();
+		
+	}
 }
+
+
