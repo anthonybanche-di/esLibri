@@ -103,6 +103,16 @@
     </div>
   </div>
 
+  <div style="background-color: white; margin-left: 20%; margin-right: 20%;">
+    <form action="/lista-editori/import" name="importCSV" method="post" enctype="multipart/form-data">
+
+    Import Articolo CSV: <input type="file" name="fileCSV" accept=".csv" />
+    <input type="submit" value="Aggiungi">
+    
+    <a href="/lista-editori/export">Export Lista CSV</a>
+    </form></div>
+  
+
     <p>abbellire l'esito!!!</p>
     <div id="esito" th:text="${esito}"></div>
 
