@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.opencsv.bean.CsvBindByName;
+
 @Entity
 @Table(name = "articolo")
 public class ArticoloEntity {
@@ -16,19 +18,34 @@ public class ArticoloEntity {
 	private int id;
 	
 	@Column(name="descrizione")
+	@CsvBindByName
 	private String descrizione;
 	
 	@Column(name="prezzo")
+	@CsvBindByName
 	private double prezzo;
 
 	@Column(name="categoria")
+	@CsvBindByName
 	private String categoria;
 
 	@Column(name="rimanenza")
+	@CsvBindByName
 	private int rimanenza;
 
 	@Column(name="immagine")
 	private String immagine;
+
+	public ArticoloEntity() {
+		super();
+	}
+
+	public ArticoloEntity(String descrizione, double prezzo, String categoria, int rimanenza) {
+		this.descrizione = descrizione;
+		this.prezzo = prezzo;
+		this.categoria = categoria;
+		this.rimanenza = rimanenza;
+	}
 
 	public int getId() {
 		return id;
