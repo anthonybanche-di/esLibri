@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.opencsv.bean.CsvBindByName;
+
 @Entity
 @Table(name = "editore")
 public class Editore {
@@ -16,9 +18,11 @@ public class Editore {
 	private int id;
 	
 	@Column(name="nome", length = 50, nullable = true)
+	@CsvBindByName
 	private String nome;
 	
 	@Column(name="contatto", length = 100, nullable = true)
+	@CsvBindByName
 	private String contatto;
 	
 	@Column(name="immagine")
