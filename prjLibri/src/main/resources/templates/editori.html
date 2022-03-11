@@ -5,10 +5,35 @@
     <img src="https://images.cooltext.com/5586845.png" alt="Lista Editori">
   </div>  
 
+     <!--Esito-->
+    <div style="display: inline; height: fit-content; width: fit-content; padding-left: 20%;">
+     <div style="position: absolute; width: 13rem; margin-left:2%; margin-right: 75%; background-color: white;"> 
+      <p style="width: 30%; margin: auto;">ESITO:</p>
+      <br>
+      <p id="esito" th:text="${esito}"></p>
+      </div>
+    </div>
+
+      <!--Import/Export-->
+      <div style="display: inline; background-color: white;">
+        <div style="position: absolute; margin-right:2%; margin-left: 80%; background-color: white;"> 
+                <!--Import - Export-->
+          <div style="background-color: white; margin-left: 20%; margin-right: 20%;">
+            <form action="/lista-editori/import" name="importCSV" method="post" enctype="multipart/form-data">
+                <!--Import-->
+              Import Articolo CSV: <input type="file" name="fileCSV" accept=".csv" />
+              <input type="submit" value="Aggiungi">
+                <!--Export-->
+                <br>
+                <br>
+              <a href="/lista-editori/export">Export Lista CSV</a>
+            </form>
+          </div>
+        </div>
+      </div>
 
   <!--Contenitore della TABELLA-->
-  <div style="background-color: white; margin-left: 20%; margin-right: 20%;">
-
+  <div style="background-color: white; margin: auto; width: 50%;">
     <table class="table table-bordered" id="tabellaEditori" th:if="${editori} != null">
       <thead>
         <tr>
@@ -24,7 +49,7 @@
             <td th:text="${editore.id}"></td>
             <td th:text="${editore.nome}"></td>
             <td th:text="${editore.contatto}"></td>
-			<td> <img th:src="${editore.immagine}"/></td>
+			      <td> <img th:src="${editore.immagine}"/></td>
             <!-- Bottoni Tabella-->
             <td><div>
             <!--Bottone "modifica"-->
@@ -50,7 +75,7 @@
             
               <!--Immagine editore-->
             <label for="immagine"><b>Immagine</b></label></br>
-            <input id="immagineInput" type="file" placeholder="Contatto editore" name="img" accept="image/png, image/jpeg">
+            <input id="immagineInput" type="file" name="img" accept="image/png, image/jpeg">
 
               <!--Bottoni popup-->
             <input id="editButton" type="submit" value="Aggiungi" class="btn">
@@ -68,7 +93,7 @@
   </div>
 
   <!-- Bottone "Aggiungi"-->
-  <div style="float:right; margin-right: 20%;">
+  <div style="float:right; margin-right: 25%;">
     <button type="button" class="btn btn-success" onclick="openForm2()">Aggiungi</button>
 
     <!-- Popup "Aggiungi"-->
@@ -102,20 +127,5 @@
 
     </div>
   </div>
-
-  <div style="background-color: white; margin-left: 20%; margin-right: 20%;">
-    <form action="/lista-editori/import" name="importCSV" method="post" enctype="multipart/form-data">
-
-    Import Articolo CSV: <input type="file" name="fileCSV" accept=".csv" />
-    <input type="submit" value="Aggiungi">
-    
-    <a href="/lista-editori/export">Export Lista CSV</a>
-    </form></div>
-  
-
-    <p>abbellire l'esito!!!</p>
-    <div id="esito" th:text="${esito}"></div>
-
-  <!-- Roba da mettere in un js-->  <!--PERCHE' SONARLINT MI DA UN ERRORE? PERCHE' NON TROVA IL TAG DI APERTURA <script>? PERCHE' HO DECISO DI FARE QUESTO CORSO???-->
   </body>
 </html>
