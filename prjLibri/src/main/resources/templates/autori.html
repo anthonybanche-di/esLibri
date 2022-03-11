@@ -22,9 +22,16 @@
 			<label>Export Autori to csv</label>
 		</div>
 		<div class = "col">
-			<a href="export">
+			<a href="/autore/export">
 				<button type="button" class="btn btn-primary">Export</button>
 			</a>
+		</div>
+		<div class = "col">
+			<form action="/autore/import" name="importCSV" method="post" enctype="multipart/form-data">
+				<label>Import Articolo CSV:</label>
+				<input type="file" name="fileCSV" accept=".csv" />
+				<input type="submit" value="Aggiungi">
+			</form>
 		</div>
 	</div>
 

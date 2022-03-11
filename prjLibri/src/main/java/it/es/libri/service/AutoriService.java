@@ -73,7 +73,7 @@ public class AutoriService {
 
 			var line = String.join(sep, new String[] { "nome", "cognome", "nazionalita" });
 
-			csvWriter.append(line);
+			csvWriter.append(line+aCapo);
 
 			for (var autore : lista)
 				csvWriter.append(autore.toCsv() + aCapo);
